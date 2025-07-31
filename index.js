@@ -58,6 +58,17 @@ function renderExtensions(list){
 
    
     container.appendChild(item);
+
+    const RemoveBtn = item.querySelector(".remove_btn") ;
+
+    RemoveBtn.addEventListener("click" , ()=> {
+      extensionsData = extensionsData.filter(e => e !== extension);
+
+     localStorage.setItem("extensionsData", JSON.stringify(extensionsData));
+
+      renderExtensions(extensionsData);
+    });
+    
   });
 }
 
@@ -80,5 +91,7 @@ document.querySelectorAll('.filter-btn').forEach(button => {
     }
   })
 });
+
+
 
 
