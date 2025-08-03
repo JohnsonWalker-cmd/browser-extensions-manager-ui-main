@@ -9,8 +9,10 @@ function loadExtensionsData(){
     return  Promise .resolve(JSON.parse(savedData));
   } else {
     fetch("./data.json")
-      .then(response => response.json)
-      .then(data => extensionsData = data)
+      .then(response => response.json())
+      .then(data => {
+        extensionsData = data;
+      })
       .catch(error => console.error("Error fetching data" , error))
       return [];
   }
@@ -60,10 +62,11 @@ function addToggleEvent(item, extension){
   const toggle = item.querySelector(".custom-switch");
 
   toggle.addEventListener("click" , () => {
+    toggle.classList.toggle("active");
     extension.active = !extension.active;
 
     saveExtensionsData();
-  })
+  });
 }
 
 
@@ -78,13 +81,13 @@ function addRemoveEvent(item,extension){
 }
 
 function saveExtensionsData(){
-  localStorage.setItem("extensions" , JSON.stringify(extensionsData));
+  localStorage.setItem("extensionsData" , JSON.stringify(extensionsData));
 }
 
 function setupFilters(){
-  document.querySelectorAll(".filter_btn").forEach(button => {
+  document.querySelectorAll(".filter-btn").forEach(button => {
     button.addEventListener("click" , () => {
-      document.querySelectorAll(".filter_btn").forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
 
 
