@@ -1,114 +1,182 @@
-*{
+:root {
+  /* Neutral */
+  --neutral-900: hsl(227, 75%, 14%);
+  --neutral-800: hsl(226, 25%, 17%);
+  --neutral-700: hsl(225, 23%, 24%);
+  --neutral-600: hsl(226, 11%, 37%);
+  --neutral-300: hsl(0, 0%, 78%);
+  --neutral-200: hsl(217, 61%, 90%);
+  --neutral-100: hsl(0, 0%, 93%);
+  --neutral-0: hsl(200, 60%, 99%);
+
+  /* Red */
+  --red-400: hsl(3, 86%, 64%);
+  --red-500: hsl(3, 71%, 56%);
+  --red-700: hsl(3, 77%, 44%);
+
+  /* Gradients */
+  --gradient-dark: linear-gradient(180deg, #040918 0%, #091540 100%);
+  --gradient-light: linear-gradient(180deg, #EBF2FC 0%, #EEF8F9 100%);
+}
+
+/* ========== RESET ========== */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-body{
-  font-family: "Noto Sans",
-    sans-serif;
-  background: linear-gradient(180deg, #040918 0%, #091540 100%);
+
+body {
+  font-family: "Noto Sans", sans-serif;
+  background: var(--gradient-dark);
   background-repeat: no-repeat;
-  height: 100vh;
   background-attachment: fixed;
+  height: 100vh;
+  color: var(--neutral-0);
 }
-.header{
-  background-color: hsl(225, 23%, 24%);
+
+/* ========== LIGHT MODE ========== */
+body.light-theme {
+  background: var(--gradient-light);
+  color: var(--neutral-900);
+}
+
+body.light-theme .header,
+body.light-theme .theme-toggle,
+body.light-theme .grid-item,
+body.light-theme .filter-btn,
+body.light-theme .remove_btn,
+body.light-theme .custom-switch {
+  background-color: var(--neutral-200);
+  border-color: var(--neutral-300);
+}
+
+body.light-theme .body-header h1,
+body.light-theme .content-description h3 {
+  color: var(--neutral-900);
+}
+
+body.light-theme .content-description p {
+  color: var(--neutral-700);
+}
+
+body.light-theme .filter-btn.active {
+  background-color: var(--red-400);
+  color: var(--neutral-900);
+}
+
+body.light-theme .custom-switch.active {
+  background-color: var(--red-700);
+}
+
+body.light-theme .custom-switch .slider {
+  background-color: var(--neutral-0);
+}
+
+/* ========== COMPONENTS ========== */
+
+.header {
+  background-color: var(--neutral-700);
   display: flex;
   justify-content: space-between;
-  margin-top: 1rem;
-  margin-left: 1rem;
-  margin-right: 1rem;
-  max-width: 100%;
+  margin: 1rem;
   padding: 0.5rem;
   border-radius: 8px;
 }
-.brand-logo img{
+
+.brand-logo img,
+.theme-toggle img {
   max-width: 100%;
   object-fit: cover;
   block-size: auto;
 }
-.theme-toggle{
-  background-color: hsl(226, 25%, 17%);
+
+.theme-toggle {
+  background-color: var(--neutral-800);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10px;
   border-radius: 8px;
+  cursor: pointer;
 }
-.theme-toggle img{
-  max-width: 100%;
-  object-fit: cover;
-  block-size: auto;
-}
-.body-header{
-  margin-left: 1rem;
-  margin-right: 1rem;
-  display : flex;
+
+.body-header {
+  margin: 1.5rem 1rem 2rem;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1.5rem;
-  margin-bottom: 2rem;
 }
-.body-header h1{
-  color: hsl(200, 60%, 99%);
+
+.body-header h1 {
+  color: var(--neutral-0);
 }
-.filter-btn{
+
+.filter-btn {
   border: none;
-  background-color: hsl(225, 23%, 24%);
-  color: hsl(200, 60%, 99%);
+  background-color: var(--neutral-700);
+  color: var(--neutral-0);
   padding: 6px 12px;
   font-weight: 400;
   border-radius: 9999px;
   text-align: center;
   cursor: pointer;
 }
-.filter-btn.active{
-  background-color: hsl(3, 86%, 64%);
-  color: hsl(227, 75%, 14%);
+
+.filter-btn.active {
+  background-color: var(--red-400);
+  color: var(--neutral-900);
 }
-.body-main{
-  margin-left: 1rem;
-  margin-right: 1rem;
+
+.body-main {
+  margin: 0 1rem;
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
-.grid-item{
-  background-color: hsl(226, 11%, 37%);
+
+.grid-item {
+  background-color: var(--neutral-600);
   display: flex;
   gap: 1.5rem;
   flex-direction: column;
   padding: 0.5rem;
   border-radius: 10px;
-  border: 1px solid hsl(0, 0%, 78%);
+  border: 1px solid var(--neutral-300);
 }
-.content{
+
+.content {
   display: flex;
   gap: 0.7rem;
 }
-.content-image img{
+
+.content-description h3 {
+  color: var(--neutral-0);
+}
+
+.content-description p {
+  color: var(--neutral-300);
+}
+
+.content-description h3,
+.content-description p {
+  word-break: break-word;
+}
+
+.content-image img {
   object-fit: cover;
   max-width: 100%;
   block-size: auto;
 }
-.content-description h3,
-.content-description p{
-  word-break: break-word;
-}
-.content-description h3{
-  color: hsl(200, 60%, 99%);
-}
-.content-description p{
-  color: hsl(0, 0%, 78%);
-}
-.content_footer{
+
+.content_footer {
   display: flex;
   justify-content: space-between;
-  align-items:center;
+  align-items: center;
 }
 
-.custom-switch{
-  background-color: hsl(225, 23%, 24%);
+.custom-switch {
+  background-color: var(--neutral-700);
   cursor: pointer;
   border-radius: 30px;
   height: 28px;
@@ -116,38 +184,44 @@ body{
   position: relative;
   transition: background-color 0.3s ease;
 }
-.custom-switch .slider{
+
+.custom-switch .slider {
   width: 26px;
   height: 26px;
-  background-color: hsl(200, 60%, 99%);
+  background-color: var(--neutral-0);
   position: absolute;
   border-radius: 50%;
   left: 1px;
   top: 1px;
   transition: transform 0.3s ease;
 }
+
 .custom-switch.active {
-  background-color: hsl(3, 77%, 44%);
+  background-color: var(--red-700);
 }
-.custom-switch.active .slider{
+
+.custom-switch.active .slider {
   transform: translateX(30px);
 }
-.remove_btn{
-  background-color: hsl(225, 23%, 24%);
-  border: 1px solid hsl(0, 0%, 78%);
+
+.remove_btn {
+  background-color: var(--neutral-700);
+  border: 1px solid var(--neutral-300);
   border-radius: 9999px;
   padding: 6px 10px;
-  color: hsl(0, 0%, 93%);
+  color: var(--neutral-100);
   font-size: 16px;
   cursor: pointer;
 }
 
-@media (max-width : 480px){
-  .body-header{
+/* ========== MEDIA ========== */
+@media (max-width: 480px) {
+  .body-header {
     flex-direction: column;
-    gap : 1rem;
+    gap: 1rem;
   }
-  .body-main{
+
+  .body-main {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
   }

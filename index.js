@@ -13,8 +13,10 @@ function loadExtensionsData(){
       .then(data => {
         extensionsData = data;
       })
-      .catch(error => console.error("Error fetching data" , error))
-      return [];
+      .catch(error =>{ console.error("Error fetching data" , error);
+        return [];
+      });
+      
   }
 }
 
@@ -113,6 +115,37 @@ function initializeApp(){
 }
 
 initializeApp();
+const themeToggle = document.querySelector(".theme-toggle");
+
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("light-theme");
+
+  // Optional: swap icon
+  const icon = themeToggle.querySelector("img");
+  const isLight = document.body.classList.contains("light-theme");
+  icon.src = isLight 
+    ? "./assets/images/icon-moon.svg" 
+    : "./assets/images/icon-sun.svg";
+  icon.alt = isLight ? "dark mode" : "light mode";
+
+  // Optional: persist theme
+  localStorage.setItem("theme", isLight ? "light" : "dark");
+});
+
+// Load persisted theme
+window.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "light") {
+    document.body.classList.add("light-theme");
+    const icon = document.querySelector(".theme-toggle img");
+    icon.src = "./assets/images/icon-moon.svg";
+    icon.alt = "dark mode";
+  } else {
+    icon.src = "./assets/images/icon-sun.svg";
+    icon.alt = "light mode";
+  }
+});
+
 /*let extensionsData = [];
 
 
